@@ -14,6 +14,8 @@ namespace EjerciciosCSharp
                 Console.WriteLine("\r\n---- Menú de Ejercicios ----");
                 Console.WriteLine("1- ¿Cuál es el mayor de dos dígitos?");
                 Console.WriteLine("2- ¿Cuál es el mayor de dos dígitos?");
+                Console.WriteLine("3- ¿Que día de la semana es?");
+                Console.WriteLine("4- ¿Cuál es su valor Unicode?");
                 Console.Write("Elige opción del menú, [0] para salir: ");
                 try
                 {
@@ -34,6 +36,9 @@ namespace EjerciciosCSharp
                         break;
                     case "3":
                         Variables.Quediaes();
+                        break;
+                    case "4":
+                        Variables.valorUnicode();
                         break;
                 }
             } while (eleccion != "0");

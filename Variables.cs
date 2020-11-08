@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Text;
 
 public partial class Variables
 {
@@ -64,6 +66,7 @@ public partial class Variables
      */
     public static void Quediaes()
     {
+        //Aprovecho que he creado una constante enumerada llamada Diasemana para evitar hacer un switch hasta 7 veces
         bool comprobar;
         short dia;
         Console.Clear();
@@ -79,10 +82,46 @@ public partial class Variables
                 Console.WriteLine("El valor tiene que ser un número comprendido entre 1 y 7");
             }
         } while (!comprobar);
+        //Con Enum.GetName hago la llamada a la enumeración "DiaSemana". El cual añade el tipo de la constante enumerada con typeof según el valor que le señalo en la variable "dia"
         Console.WriteLine("El valor {0} pertenece al {1}", dia, Enum.GetName(typeof(DiaSemana),dia));
-    }
+    }//fin clase Quediaes()
 
+    //Escribe un programa que lea una cadena de caracteres y a continuación visualice el símbolo y el valor Unicode de cada uno de los caracteres de la cadena.
+    public static void valorUnicode()
+    {
+        string cadena=" ";
+        bool comprobar = true; ;
+        do
+        {
+            Console.WriteLine("Introduce una cadena de caracteres: ");
+            //try{....}catch(Exception e){....} controla los errores que puedan surgir al introducir un valor
+            try
+            {
+                cadena=Console.ReadLine();
+            }catch(Exception e)
+            {
+                Console.WriteLine("No has introducido una cadena de caracteres válida");
+                Console.WriteLine(e.Message);
+                comprobar = false;
+            }
+        } while (!comprobar);
+     //Leemos la cadena y la separamos en un array de caracteres
+        //Trim() nos elimina los espacios en blanco a ambos lados de la cadena.
+        cadena = cadena.Trim();
+        //Generamos un array de caracteres que albergue cada uno de los caracteres de la cadena introducida. 
+        //ToCharArray() convierte un string en una cadena de caracteres.
+        char[] caracter = cadena.ToCharArray();
+        //"cadena.Length" devuelve el tamaño de la cadena caracter por caracter
+        Console.WriteLine("Caracter\tValor Unicode");
+        for (int i = 0; i < cadena.Length; i++)
+        {
+        //Para halar el valor Unicode de cada caracter no tenemos más que convertir char en int
+            Console.WriteLine("{0} \t\t {1}",caracter[i], (int)caracter[i]);
+        }
+        Console.WriteLine("Oprime una tecla para volver al menú");
+        Console.ReadKey();
 
+    }//fin clase valorUnicode()
 
 
 }
