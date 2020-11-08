@@ -64,7 +64,22 @@ public partial class Variables
      */
     public static void Quediaes()
     {
-
+        bool comprobar;
+        short dia;
+        Console.Clear();
+        do
+        {
+            
+            Console.WriteLine("Introduce el valor del que quieres adivinar en que día cae (1-7): ");
+            comprobar = short.TryParse(Console.ReadLine(), out dia);
+            if (!comprobar)
+            {
+                Console.WriteLine("No has introducido un número entero");
+            }else if (dia<=0 || dia>=8){
+                Console.WriteLine("El valor tiene que ser un número comprendido entre 1 y 7");
+            }
+        } while (!comprobar);
+        Console.WriteLine("El valor {0} pertenece al {1}", dia, Enum.GetName(typeof(DiaSemana),dia));
     }
 
 

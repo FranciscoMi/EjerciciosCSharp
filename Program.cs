@@ -32,6 +32,9 @@ namespace EjerciciosCSharp
                     case "2":
                         Variables.Impares();
                         break;
+                    case "3":
+                        Variables.Quediaes();
+                        break;
                 }
             } while (eleccion != "0");
         }//fin main
