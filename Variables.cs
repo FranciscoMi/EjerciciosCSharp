@@ -115,8 +115,10 @@ public partial class Variables
         Console.WriteLine("Caracter\tValor Unicode");
         for (int i = 0; i < cadena.Length; i++)
         {
-        //Para halar el valor Unicode de cada caracter no tenemos más que convertir char en int
-            Console.WriteLine("{0} \t\t {1}",caracter[i], (int)caracter[i]);
+            //Para hallar el valor Unicode de cada caracter no tenemos más que convertir char en int y luego hacer la transformación en hexadecimal con ToString("X4") 
+            //X--> hexadecimal X4-->Hexadecimal con 4 valores
+            int numero = (int)caracter[i];
+            Console.WriteLine("{0} \t\t \\u{1}",caracter[i], numero.ToString("X4"));
         }
         Console.WriteLine("Oprime una tecla para volver al menú");
         Console.ReadKey();
