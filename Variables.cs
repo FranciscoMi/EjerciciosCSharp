@@ -6,7 +6,7 @@ public partial class Variables
 {
     //Creamos una constante enumerada llamada DiaSemana que albergue los días y les asignamos un valor. Se les puede hacer referencia con el método GetName
     enum DiaSemana {Lunes=1, Martes=2, Miercoles=3, Jueves=4, Viernes=5, Sábado=6, Domingo=7  } 
-    
+    enum grado {a,b,c}
     /*
      Crea un programa en C# que solicite por teclado dos números e indique cuál es el mayor de ambos
      */
@@ -124,6 +124,42 @@ public partial class Variables
         Console.ReadKey();
 
     }//fin clase valorUnicode()
+
+    /*Realiza un programa que dé como resultado las soluciones reales x1 y x2 de una ecuación de segundo grado de la forma: ax2+bx+c=0. 
+     * Si la solución es compleja, indicarlo por una salida de pantalla.   */
+    public static void EcuacionesGrado2()
+    {
+        double x1, x2; //Para ambos valores de x
+        int[] variable=new int[3]; //Matriz que guarda los valores de a, b y c
+        bool comprobar = true;
+        string[] signo= new string[3]; //para guardar el signo
+        do
+        {
+            for (int i = 0; i <= 2; i++) { 
+           
+            Console.Write("Escribe el valor entero de {0}: ",Enum.GetName(typeof(grado),i));
+                comprobar=int.TryParse(Console.ReadLine(),out variable[i]);
+                if (comprobar)
+                {
+                    if (variable[i] >= 0) signo[i] = "+";
+                    else if (variable[i] < 0) signo[i] = "";
+                }
+                else
+                {
+                    Console.WriteLine("No has introducido un número entero");
+                    --i;
+                }
+            }// fin for i
+        } while (!comprobar);
+
+        Console.WriteLine($"La ecuación de 2º Grado que has escrito es {signo[0]}{variable[0]}x^2{signo[1]}{variable[1]}x{signo[2]}{variable[2]}=0");
+        //Hallamos el valor de x para valores positivos de la raiz
+        x1 = (-variable[1] + Math.Sqrt(Math.Pow(variable[1], 2) - (4 * variable[0] * variable[2]))) / (2 * variable[0]);
+        //Hallamos el valor de x para valores negativos de la raiz
+        x2= (-variable[1] - Math.Sqrt(Math.Pow(variable[1], 2) - (4 * variable[0] * variable[2])))/(2*variable[0]);
+        Console.WriteLine("Los valores de x son {0} y {1}", x1, x2);
+        Console.ReadKey();
+    }
 
 
 }

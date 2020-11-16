@@ -13,9 +13,10 @@ namespace EjerciciosCSharp
                 Console.Clear();
                 Console.WriteLine("\r\n---- Menú de Ejercicios ----");
                 Console.WriteLine("1- ¿Cuál es el mayor de dos dígitos?");
-                Console.WriteLine("2- ¿Cuál es el mayor de dos dígitos?");
+                Console.WriteLine("2- ¿Cuáles son los numeros impares entre 0 y 100?");
                 Console.WriteLine("3- ¿Que día de la semana es?");
                 Console.WriteLine("4- ¿Cuál es su valor Unicode?");
+                Console.WriteLine("5- ¿Cuál es el valor de x en una ecuación de 2º grado?");
                 Console.Write("Elige opción del menú, [0] para salir: ");
                 try
                 {
@@ -40,8 +41,13 @@ namespace EjerciciosCSharp
                     case "4":
                         Variables.valorUnicode();
                         break;
+                    case "5":
+                        Variables.EcuacionesGrado2();
+                        break;
                 }
             } while (eleccion != "0");
+            Console.WriteLine("Nos vemos");
+            Console.ReadKey();
         }//fin main
 
     }//fin class program
