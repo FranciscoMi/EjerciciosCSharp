@@ -5,6 +5,7 @@ using System.Text;
 public partial class Variables
 {
     //Creamos una constante enumerada llamada DiaSemana que albergue los días y les asignamos un valor. Se les puede hacer referencia con el método GetName
+    enum Ordinales { Primer=1, Segundo=2, Tercer=3, Cuarto=4, Quinto=5, Sexto=6, Septimo=7, Octavo=8, Noveno=9, Décimo=10}
     enum DiaSemana {Lunes=1, Martes=2, Miercoles=3, Jueves=4, Viernes=5, Sábado=6, Domingo=7  } 
     enum grado {a,b,c}
     /*
@@ -136,17 +137,17 @@ public partial class Variables
         do
         {
             for (int i = 0; i <= 2; i++) { 
-           
-            Console.Write("Escribe el valor entero de {0}: ",Enum.GetName(typeof(grado),i));
+           //Enum.Getname(tipo de valor enumerado, valor) recoge el nombre de la enummeración correspondiente al valor. Para saber el tipo es imprescindible typeof
+            Console.Write("Escribe el valor entero de {0}: ",Enum.GetName(typeof(grado),i)); 
                 comprobar=int.TryParse(Console.ReadLine(),out variable[i]);
                 if (comprobar)
                 {
-                    if (variable[i] >= 0) signo[i] = "+";
+                    if (variable[i] >= 0) signo[i] = "+"; //comprobamos que los valores sean positivos o cero para crear la función de 2º grado
                     else if (variable[i] < 0) signo[i] = "";
                 }
                 else
                 {
-                    Console.WriteLine("No has introducido un número entero");
+                    Console.WriteLine("No has introducido un número entero válido"); //Si no se meten números enteros restamos 1 a i para volver a pedir el dato
                     --i;
                 }
             }// fin for i
@@ -154,12 +155,52 @@ public partial class Variables
 
         Console.WriteLine($"La ecuación de 2º Grado que has escrito es {signo[0]}{variable[0]}x^2{signo[1]}{variable[1]}x{signo[2]}{variable[2]}=0");
         //Hallamos el valor de x para valores positivos de la raiz
+        //Math.Sqrt(num) hace la raiz cuadrada de num. //Math.Pow(valor,exp) eleva el valor a su exponente
         x1 = (-variable[1] + Math.Sqrt(Math.Pow(variable[1], 2) - (4 * variable[0] * variable[2]))) / (2 * variable[0]);
         //Hallamos el valor de x para valores negativos de la raiz
         x2= (-variable[1] - Math.Sqrt(Math.Pow(variable[1], 2) - (4 * variable[0] * variable[2])))/(2*variable[0]);
-        Console.WriteLine("Los valores de x son {0} y {1}", x1, x2);
+        Console.WriteLine("Los valores de x son {0:N2} y {1:N2}", x1, x2); //N2 significa formato de número con 2 decimales.
+        Console.ReadKey();
+    }//fin EcuacionesGrado2()
+
+    //Crea un programa que pida por teclado 10 números diferentes, los almacene en un array y los muestre en el orden en que fueron introducidos.
+    public static void NumerosDiferentes()
+    {
+        bool esEntero;
+        int[] matriz = new int[10];
+        int numero;
+        Console.Clear();
+        do
+        {
+            Console.Write("Introduce el {0} número entero: ", Enum.GetName(typeof(Ordinales), 1));
+            esEntero = int.TryParse(Console.ReadLine(), out matriz[0]);
+        } while (!esEntero);
+        for (int i = 1; i < 10; i++){
+           do{
+                Console.Write("Introduce el {0} número entero: ", Enum.GetName(typeof(Ordinales), i+1));
+                esEntero = int.TryParse(Console.ReadLine(), out numero);
+                for (int j = 0; j <= i; j++) {
+                    if (matriz[j] == numero)
+                    {
+                        Console.WriteLine("El numero {0} ya lo has introducido. Teclea un número diferente", numero);
+                        esEntero = false;
+                    }    
+                }//fin for j
+           } while (!esEntero);
+            matriz[i] = numero;
+        }//fin for i
+
+        Console.Clear();
+        Console.Write("Los números que has introducido son: ");
+        for (int i = 0; i < 10; i++)
+        {
+            Console.Write(matriz[i]+", "); 
+        }
+        Console.WriteLine("en ese orden");
         Console.ReadKey();
     }
+
+
 
 
 }

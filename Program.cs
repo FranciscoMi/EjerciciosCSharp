@@ -17,6 +17,7 @@ namespace EjerciciosCSharp
                 Console.WriteLine("3- ¿Que día de la semana es?");
                 Console.WriteLine("4- ¿Cuál es su valor Unicode?");
                 Console.WriteLine("5- ¿Cuál es el valor de x en una ecuación de 2º grado?");
+                Console.WriteLine("6- ¿Cuales son los 10 numeros que has introducido?");
                 Console.Write("Elige opción del menú, [0] para salir: ");
                 try
                 {
@@ -43,6 +44,9 @@ namespace EjerciciosCSharp
                         break;
                     case "5":
                         Variables.EcuacionesGrado2();
+                        break;
+                    case "6":
+                        Variables.NumerosDiferentes();
                         break;
                 }
             } while (eleccion != "0");
